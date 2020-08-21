@@ -2,6 +2,12 @@
 
 WiFi captive portal for the NodeMCU (ESP8266 Module) with DNS spoofing.
 
+<!-- Original Author -->
+
+# <u>Original Author</u>
+
+<a target="_blank" href="https://github.com/125K/ESP8266_WiFi_Captive_Portal"><img width="700px" src="https://raw.githubusercontent.com/Alpha-1729/esp-wifi-captive-portal/master/src/author.png"></a>
+
 <!-- Disclaimer -->
 
 # <u>Disclaimer</u>
