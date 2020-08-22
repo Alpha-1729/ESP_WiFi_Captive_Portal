@@ -35,8 +35,10 @@ This project is for testing and educational purposes. Use it only against your o
 - Passwords and SSID will be stored in the EEPROM of the ESP8266.
 - EEPROM Memory location:
   - 0-19 :arrow_forward: For storing SSID.
-  - 20-END :arrow_forward: For storing password.
-- When ESP8266 starts, it loads the SSID and all passwords in the EEPROM.
+  - 20-24 :arrow_forward: To check the first boot of ESP8266.
+  - 30-END :arrow_forward: For storing password.
+- When ESP8266 boots for the first time, it checks the data in memory location (20-24) in EEPROM.
+- After the first boot, it only loads the SSID and all passwords in the EEPROM.
 - If there is no SSID in the EEPROM, default SSID will be set.
 
 <!-- Usage -->
@@ -104,3 +106,8 @@ This project is for testing and educational purposes. Use it only against your o
 5. You can optionally change some parameters like the SSID name and texts of the page like title, subtitle, text body...
 6. Upload the code into your board.
 7. You are done!
+
+# <u>Note</u>
+
+- After uploading the code, first clear the passwords already in the EEPROM.
+- If any error happens, kindly report the issue.
