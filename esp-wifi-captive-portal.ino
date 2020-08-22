@@ -29,8 +29,9 @@ String newSSID = "";     // For adding new SSID.
 String currentSSID = ""; // For storing the SSID in the EEPROM.
 
 // For storing passwords in EEPROM.
-int passStart = 20;      // Starting location in EEPROM to save password.
-int passEnd = passStart; // Ending location in EEPROM to save password.
+int initialCheckLocation = 20; // Location to check whether the ESP is running for the first time.
+int passStart = 30;            // Starting location in EEPROM to save password.
+int passEnd = passStart;       // Ending location in EEPROM to save password.
 
 unsigned long bootTime = 0, lastActivity = 0, lastTick = 0, tickCtr = 0;
 DNSServer dnsServer;
@@ -150,6 +151,25 @@ void setup()
   bootTime = lastActivity = millis();
   EEPROM.begin(512);
   delay(10);
+
+  // Check whether the ESP is running for the first time.
+  String checkValue = "first"; // This will will be set in EEPROM after the first run.
+
+  for (int i = 0; i < checkValue.length(); ++i)
+  {
+    if (char(EEPROM.read(i + initialCheckLocation)) != checkValue[i])
+    {
+      // Add "first" in initialCheckLocation.
+      for (int i = 0; i < checkValue.length(); ++i)
+      {
+        EEPROM.write(i + initialCheckLocation, checkValue[i]);
+      }
+      EEPROM.write(0, '\0');         // Clear SSID location in EEPROM.
+      EEPROM.write(passStart, '\0'); // Clear password location in EEPROM
+      EEPROM.commit();
+      break;
+    }
+  }
 
   // Read SSID in the EEPROM.
   String ESSID;
