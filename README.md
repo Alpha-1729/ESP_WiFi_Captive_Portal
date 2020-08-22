@@ -28,6 +28,17 @@ This project is for testing and educational purposes. Use it only against your o
 - :muscle: You can clear saved password when necessary.
 - :muscle: You can change the SSID name from the portal itself.
 
+<!-- Working -->
+
+# <u>Working</u>
+
+- Passwords and SSID will be stored in the EEPROM of the ESP8266.
+- EEPROM Memory location:
+  - 0-19 :arrow_forward: For storing SSID.
+  - 20-END :arrow_forward: For storing password.
+- When ESP8266 starts, it loads the SSID and all passwords in the EEPROM.
+- If there is no SSID in the EEPROM, default SSID will be set.
+
 <!-- Usage -->
 
 # <u>Usage</u>
